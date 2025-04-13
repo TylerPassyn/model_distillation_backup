@@ -126,6 +126,15 @@ def save_all_extracted_features(image_file_path, save_directory, batch_size=16):
     np.save(save_path, all_features)
     print(f"Extracted features shape: {all_features.shape}")
     print(f"Saved all extracted features to {save_path}")
+    
+def save_class_labels(output_directory):
+    model = ViTForImageClassification.from_pretrained('google/vit-large-patch16-224')
+    # Get the id2label mapping
+    id2label = model.config.id2label
+    # Save the class labels to a CSV file
+    class_labels_df = pd.DataFrame(id2label.items(), columns=['Class ID', 'Class Label'])
+    class_labels_df.to_csv(os.path.join(output_directory, 'class_labels.csv'), index=False)
+    print(f"Class labels saved to {os.path.join(output_directory, 'class_labels.csv')}")
 
 
 def main():
@@ -158,9 +167,11 @@ def main():
 
     
 
-    # Call the function to compute logits
+
+
     #compute_logits(image_file_path, save_directory, batch_size)
-    save_all_extracted_features(image_file_path, save_directory, batch_size)
+    #save_all_extracted_features(image_file_path, save_directory, batch_size)
+    save_class_labels(save_directory)
 
 if __name__ == "__main__":
     main()

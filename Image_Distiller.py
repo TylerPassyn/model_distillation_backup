@@ -10,21 +10,27 @@ from tqdm import tqdm
 
 
 class Distill_Model_VIT_to_VIT: 
-    def __init__(self, num_hidden_layers, num_classes, hidden_size=768, attention_heads=12):
+    def __init__(self, num_hidden_layers, num_classes, hidden_size=768, attention_heads=12, class_names = None):
         self.num_hidden_layers = num_hidden_layers
         self.num_classes = num_classes
         self.hidden_size = hidden_size
         self.attention_heads = attention_heads
         self.model = self.init_model()
+        self.class_names = class_names if class_names is not None else [str(i) for i in range(num_classes)]
 
        
+    
     def init_model(self):
         # Define a smaller ViT student model (fewer layers, smaller hidden size)
         student_config = ViTConfig(
             num_hidden_layers=self.num_hidden_layers,
                 hidden_size=self.hidden_size,       
                 num_attention_heads=self.attention_heads, 
-                num_labels=self.num_classes
+                num_labels= self.num_classes,
+                #set the class names to the class names of the teacher model
+                id2label={i: name for i, name in enumerate(self.class_names)},
+                label2id={name: i for i, name in enumerate(self.class_names)},
+
             )
         student_model = ViTForImageClassification(student_config)
 

@@ -80,9 +80,6 @@ def main():
     #get model size in MB
     model_size = model_size * 1e-6
     print("Model size in MB: ", model_size)
-    #predict using the row nums of the test data
-    logits_test = logits_test[0:1]
-    labels_test = labels_test[0:1]
 
 
 
