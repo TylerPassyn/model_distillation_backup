@@ -23,7 +23,6 @@ import sys
 from tqdm import tqdm
 
 def compute_logits(image_file_path, save_directory, batch_size=16):
-
     print("Loading model.....")
     model = ViTForImageClassification.from_pretrained('google/vit-large-patch16-224')
     print("Model loaded successfully!")
@@ -31,60 +30,38 @@ def compute_logits(image_file_path, save_directory, batch_size=16):
     feature_extractor = ViTImageProcessor.from_pretrained('google/vit-large-patch16-224')
     print("Feature extractor loaded successfully!")
     model_size = model.num_parameters()
-
     #output class num 
     num_classes = model.config.num_labels
     print("Number of classes:", num_classes)
-    
     logits_list = []
     image_class_list = []
-
     image_files = [os.path.join(image_file_path, file) for file in os.listdir(image_file_path) if file.endswith('.JPEG') or file.endswith('.jpg')]
-
     overall_start_time = time.time()
-
-
-  
     with tqdm(total=len(image_files), desc="Processing Images", unit="image") as pbar:
         for i in range(0, len(image_files), batch_size):
             batch_files = image_files[i:i + batch_size]
             images = [Image.open(file).convert("RGB") for file in batch_files]
             inputs = feature_extractor(images=images, return_tensors="pt")
-
-
-
             outputs = model(**inputs)
             logits = outputs.logits
-            
-           
-
             predicted_class_indices = logits.argmax(-1).tolist()
             image_classes = [model.config.id2label[idx] for idx in predicted_class_indices]
-
             logits_list.extend(logits.tolist())
             image_class_list.extend(image_classes)
-            
-
-           
             pbar.update(len(batch_files))
-        
     overall_end_time = time.time()
     overall_total_time = overall_end_time - overall_start_time
-
     average_inference_time = overall_total_time / len(image_files)
     print("Average inference time per image:", average_inference_time, "seconds")
-
     # Save the logits, image classes, and inference times to a CSV file
     df = pd.DataFrame({
         'Image Class': image_class_list,
         'Logits': logits_list,
     })
     df.to_csv(save_directory + '/logits_output.csv', index=False)
-
     #save the model size and the total inference time to a txt file
     model_size = model.num_parameters()
     model_size_mb = model_size / 1e6
-
     with open(save_directory + '/model_size_and_inference_time.txt', 'w') as f:
         f.write(f'Model size (in parameters): {model_size}\n')
         f.write(f'Model size (in MB): {model_size_mb}\n')
@@ -161,16 +138,15 @@ def main():
     image_file_path = sys.argv[1]
     save_directory = sys.argv[2]
 
-    
+    print("Warning: Logit extraction is time intensive. It may take a while to complete.")
+    print("You will have 5 seconds to cancel the process if you want to.")
+    print("Press Ctrl+C to cancel.")
+    print("Starting in 5 seconds...")
+    time.sleep(5)
 
 
-
-    
-
-
-
-    #compute_logits(image_file_path, save_directory, batch_size)
-    #save_all_extracted_features(image_file_path, save_directory, batch_size)
+    compute_logits(image_file_path, save_directory, batch_size)
+    save_all_extracted_features(image_file_path, save_directory, batch_size)
     save_class_labels(save_directory)
 
 if __name__ == "__main__":
