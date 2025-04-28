@@ -30,7 +30,7 @@ for class_id, class_name in id2label_2.items():
         id2label_2[class_id] = label_mapping[int(class_id)]
     else:
         print(f"Class ID {class_id} not found in the new labels.")
-# Print the updated list of classes
+# Print the updated list of classess
 print("Updated classes the distilled model can classify:")
 for class_id, class_name in id2label_2.items():
     print(f"Class ID {class_id}: {class_name}")

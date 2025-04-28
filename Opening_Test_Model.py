@@ -20,28 +20,5 @@ import time
 
 #load 1000 images from ImageNet
 
+for i 
 
-url = 'http://images.cocodataset.org/val2017/000000039769.jpg'
-image = Image.open(requests.get(url, stream=True).raw)
-
-
-
-feature_extractor = ViTFeatureExtractor.from_pretrained('google/vit-large-patch16-224')
-
-model = ViTForImageClassification.from_pretrained('google/vit-large-patch16-224')
-
-
-
-start_time = time.time()
-inputs = feature_extractor(images=image, return_tensors="pt")
-outputs = model(**inputs)
-logits = outputs.logits
-# model predicts one of the 1000 ImageNet classes
-predicted_class_idx = logits.argmax(-1).item()
-end_time = time.time()
-
-model_size = model.num_parameters()
-print("Model size (in parameters):", model_size)
-print("Model size (in MB):", model_size / 1e6)
-print("Time taken to predict:", end_time - start_time)
-print("Predicted class:", model.config.id2label[predicted_class_idx])

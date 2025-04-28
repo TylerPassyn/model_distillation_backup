@@ -22,6 +22,9 @@ import sys
 
 
 
+def test_model(model, logits_test, labels_test):
+    # Set the model to evaluation
+
 def main():
 
     logits = pd.read_csv('/deac/csc/classes/csc373/passta23/model_distillation/Results/Main_Model_Outputs/logits_output.csv')
@@ -65,10 +68,10 @@ def main():
         attention_heads=8
     )
 
-    #distilled_model = distiller.distill(logits_train, extracted_features, num_epochs=5, learning_rate=0.0001)
+    distilled_model = distiller.distill(logits_train, extracted_features, num_epochs=5, learning_rate=0.0001)
 
     # Save the distilled model
-    #distiller.save_model("distilled_model")
+    distiller.save_model("distilled_model")
 
     model_path = '/deac/csc/classes/csc373/passta23/model_distillation/distilled_model'
 
@@ -80,7 +83,6 @@ def main():
     #get model size in MB
     model_size = model_size * 1e-6
     print("Model size in MB: ", model_size)
-
 
 
 if __name__ == "__main__":
