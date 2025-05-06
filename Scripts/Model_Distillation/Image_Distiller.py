@@ -82,6 +82,7 @@ class Distill_Model_VIT_to_VIT:
                         # Compute KL divergence loss
                         loss = self.calculate_kl_loss(logit, student_logits)
 
+                        print(f"Loss: {loss.item()}")  # Print the loss for debugging
                         # Backpropagate
                         loss.backward()
                         optimizer.step()

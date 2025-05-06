@@ -148,6 +148,7 @@ def main():
     compute_logits(image_file_path, save_directory, batch_size)
     save_all_extracted_features(image_file_path, save_directory, batch_size)
     save_class_labels(save_directory)
+    
 
 if __name__ == "__main__":
     main()
