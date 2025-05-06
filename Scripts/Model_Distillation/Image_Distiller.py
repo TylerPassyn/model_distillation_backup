@@ -10,13 +10,21 @@ from tqdm import tqdm
 
 
 class Distill_Model_VIT_to_VIT: 
-    def __init__(self, num_hidden_layers, num_classes, hidden_size=768, attention_heads=12, class_names = None):
+    def __init__(self, num_classes, num_hidden_layers = 8, temperature = 4.0, num_epoches = 5, hidden_size=768, attention_heads=12, learning_rate = 0.01, class_names = None):
         self.num_hidden_layers = num_hidden_layers
         self.num_classes = num_classes
         self.hidden_size = hidden_size
         self.attention_heads = attention_heads
         self.model = self.init_model()
+        self.temperature = temperature
         self.class_names = class_names if class_names is not None else [str(i) for i in range(num_classes)]
+        self.num_epoches = num_epoches
+        self.learning_rate = learning_rate
+
+        if(self.class_names is not None and len(self.class_names) != num_classes):
+            raise ValueError("The number of class names must match the number of classes.")
+        if(class_names is None):
+            print("Warning: No class names provided. Using default class names.")
 
        
     
@@ -33,22 +41,22 @@ class Distill_Model_VIT_to_VIT:
 
             )
         student_model = ViTForImageClassification(student_config)
-
-
         return student_model
     
     
-    def calculate_kl_loss(self, teacher_logits, student_logits, temperature=4.0):
+    def calculate_kl_loss(self, teacher_logits, student_logits):
+        temperature = self.temperature
         teacher_probs = torch.nn.functional.softmax(teacher_logits / temperature, dim=-1)
         student_log_probs = torch.nn.functional.log_softmax(student_logits / temperature, dim=-1)
         kl_loss = torch.nn.functional.kl_div(student_log_probs, teacher_probs, reduction="batchmean", log_target=False) * (temperature ** 2)
         return kl_loss
     
    
-    def distill(self, logits, extracted_features, num_epochs=10, learning_rate=0.001):
+    def distill(self, logits, extracted_features):
+        num_epochs = self.num_epoches
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.model.to(device)
-        optimizer = optim.Adam(self.model.parameters(), lr=learning_rate)
+        optimizer = optim.Adam(self.model.parameters(), lr= self.learning_rate)
 
 
         #get extracted features from the teacher model
@@ -59,8 +67,7 @@ class Distill_Model_VIT_to_VIT:
         for epoch in range(num_epochs):
             total_loss = 0.0
             self.model.train()
-
-            
+            # Iterate over the extracted features and logits
             with tqdm(total=len(logits), desc=f"Epoch {epoch+1}/{num_epochs}", unit="feature") as pbar:
                 for feature, logit in zip(extracted_features, logits):
                         feature = feature.to(device)
@@ -85,7 +92,6 @@ class Distill_Model_VIT_to_VIT:
             print(f"Epoch [{epoch+1}/{num_epochs}], Loss: {total_loss/len(extracted_features):.4f}")
         print("Distillation complete.")
            
-                
         return self.model
     
     def save_model(self, path):
