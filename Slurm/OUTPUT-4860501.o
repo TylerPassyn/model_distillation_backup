@@ -12,3 +12,7 @@ Loading /deac/csc/classes/csc373/software/modulefiles/csc373/python/3.11.8
 → Epoch 3 done — Avg KL Loss: 2.2058
 → Epoch 4 done — Avg KL Loss: 2.1927
 → Epoch 5 done — Avg KL Loss: 2.1517
+→ Epoch 6 done — Avg KL Loss: 2.1351
+→ Epoch 7 done — Avg KL Loss: 2.0989
+→ Epoch 8 done — Avg KL Loss: 2.0635
+→ Epoch 9 done — Avg KL Loss: 2.0025
