@@ -1,0 +1,1 @@
+Epoch 1/2:   0%|          | 0/32 [00:00<?, ?batch/s]Epoch 1/2:   0%|          | 0/32 [00:22<?, ?batch/s, avg_loss=2.53]Epoch 1/2:   3%|▎         | 1/32 [00:22<11:40, 22.59s/batch, avg_loss=2.53]slurmstepd: error: *** JOB 4860522 ON cpu-intel-67 CANCELLED AT 2025-05-07T16:52:36 ***

@@ -142,6 +142,7 @@ def main():
     from sklearn.metrics import accuracy_score
     from ast import literal_eval 
     from transformers import ViTForImageClassification
+    import time 
 
     if len(sys.argv) != 5:
         print("Usage: python Better_Distillation.py <save_model_directory> <results_save_directory> <type_of_distillation_experiment> <disillation_experiment_number>")
@@ -166,13 +167,7 @@ def main():
     type_of_distillation_experiment = sys.argv[3]
     distillation_experiment_num = sys.argv[4]
 
-    #try to cast the distillation experiment number to an int
-    try:
-        distillation_experiment_num = int(distillation_experiment_num)
-    except ValueError:
-        print("Error: The distillation experiment number must be an integer.")
-        sys.exit(1)
-
+   
     if type_of_distillation_experiment not in ["1", "2", "3"]:
         print("Error: The type of distillation experiment must be 1, 2, or 3.")
         sys.exit(1)
@@ -183,13 +178,17 @@ def main():
     experiment_type_str = None
     if type_of_distillation_experiment == "1":
         experiment_type_str = "Hidden_Layers"
-        num_hidden_layers_fr= int(sys.argv[3])
+        num_hidden_layers_fr= int(distillation_experiment_num)
     elif type_of_distillation_experiment == "2":
         experiment_type_str = "Epochs"
-        num_epochs_fr = int(sys.argv[3])
+        num_epochs_fr = int(distillation_experiment_num)
     elif type_of_distillation_experiment == "3":
         experiment_type_str = "Temperature"
-        temperature_fr = float(sys.argv[3])
+        temperature_fr = float(distillation_experiment_num)
+
+    print(f"num_hidden_layers: {num_hidden_layers_fr}")
+    print(f"temperature: {temperature_fr}")
+    print(f"num_epochs: {num_epochs_fr}")
         
         
 
@@ -205,6 +204,9 @@ def main():
     # 2) Convert to torch tensors
     feats  = torch.tensor(feats_np, dtype=torch.float32)
     tlogs  = torch.tensor(logs_np, dtype=torch.float32)
+
+    print(f"num_classes: {logs_np.shape[1]}")
+
 
     # 3) Instantiate and distill
     distiller = DistillModelVIT(
@@ -237,11 +239,15 @@ def main():
     model  = student
     model.eval()
 
+    start_time = time.time()
     with torch.no_grad():
             outputs = model(feats)  # Forward pass through the model the features
             predicted = torch.argmax(outputs.logits, dim=1)  # Get the predicted class indices
             accuracy = accuracy_score(labels_test, predicted)
             print(f"Accuracy: {accuracy * 100:.2f}%")
+    end_time = time.time()
+    average_inference_time = (end_time - start_time) / len(feats)
+    print(f"Average inference time: {average_inference_time:.4f} seconds")
 
     #save the results to a csv file that has the following columns:
     # num_hidden_layers
@@ -251,16 +257,16 @@ def main():
     # accuracy
     # if the file already exists, append to it
     # if not, create it
-    results_file = os.path.join(save_directory, "distillation_results.csv")
+    results_file = os.path.join(save_directory, "inference_distillation_results.csv")
     if os.path.exists(results_file):
         # Append to the existing file
         with open(results_file, "a") as f:
-            f.write(f"{num_hidden_layers_fr},{768},{temperature_fr},{num_epochs_fr},{accuracy}\n")
+            f.write(f"{num_hidden_layers_fr},{768},{temperature_fr},{num_epochs_fr},{accuracy},{average_inference_time}\n")
     else:
         # Create a new file and write the header
         with open(results_file, "w") as f:
-            f.write("num_hidden_layers,hidden_size,temperature,num_epochs,accuracy\n")
-            f.write(f"{num_hidden_layers_fr},{768},{temperature_fr},{num_epochs_fr},{accuracy}\n")
+            f.write("num_hidden_layers,hidden_size,temperature,num_epochs,accuracy,average_inference_time\n")
+            f.write(f"{num_hidden_layers_fr},{768},{temperature_fr},{num_epochs_fr},{accuracy},{average_inference_time}\n")
     print(f"Results saved to {results_file}")
 
     
