@@ -1,0 +1,7 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM_e25
+Account   = csc373
+NodeList  = cpu-amd-10
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################

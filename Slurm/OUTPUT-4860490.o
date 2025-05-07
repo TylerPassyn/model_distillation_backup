@@ -1,0 +1,18 @@
+#########################BEGIN-PROLOG#########################
+JobName   = csc373-DM
+Account   = csc373
+NodeList  = cpu-amd-07
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+Loading /deac/csc/classes/csc373/software/modulefiles/csc373/python/3.11.8
+  Loading requirement: compilers/gcc/12.3.0 apps/python/3.11.8
+Submitted batch job 4860491
+Submitted batch job 4860492
+Submitted batch job 4860493
+Submitted batch job 4860494
+Submitted batch job 4860495
+Submitted batch job 4860496
+Submitted batch job 4860497
+Submitted batch job 4860498
+Submitted batch job 4860499

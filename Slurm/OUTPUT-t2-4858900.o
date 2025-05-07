@@ -15,3 +15,23 @@ WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
 → Epoch 8 done — Avg KL Loss: 3.9391
 → Epoch 9 done — Avg KL Loss: 3.8465
 → Epoch 10 done — Avg KL Loss: 3.7302
+→ Epoch 11 done — Avg KL Loss: 3.5955
+→ Epoch 12 done — Avg KL Loss: 3.4205
+→ Epoch 13 done — Avg KL Loss: 3.2212
+→ Epoch 14 done — Avg KL Loss: 2.9853
+→ Epoch 15 done — Avg KL Loss: 2.7245
+→ Epoch 16 done — Avg KL Loss: 2.4497
+→ Epoch 17 done — Avg KL Loss: 2.1612
+→ Epoch 18 done — Avg KL Loss: 1.8208
+→ Epoch 19 done — Avg KL Loss: 1.5073
+→ Epoch 20 done — Avg KL Loss: 1.2392
+→ Epoch 21 done — Avg KL Loss: 1.0221
+→ Epoch 22 done — Avg KL Loss: 0.8313
+→ Epoch 23 done — Avg KL Loss: 0.6731
+→ Epoch 24 done — Avg KL Loss: 0.5626
+→ Epoch 25 done — Avg KL Loss: 0.4880
+✅ Distillation finished.
+Student model saved to distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0
+Distilled model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0
+Accuracy: 79.40%
+Results saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distillation_results.csv
