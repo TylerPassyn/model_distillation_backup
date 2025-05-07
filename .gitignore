@@ -10,6 +10,9 @@ Output/Main_Model_Outputs/all_features.npy
 # Ignore distillation_results.csv
 Output/Testing_Results/distillation_results.csv
 
+
+Output/Main_Model_Outputs/all_features_copy.npy
+
 # Ignore config.json and model.safetensors
 Scripts/Model_Distillation/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0/config.json
 Scripts/Model_Distillation/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0/model.safetensors
