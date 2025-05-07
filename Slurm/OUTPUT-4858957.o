@@ -1,0 +1,39 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM
+Account   = csc373
+NodeList  = cpu-intel-77
+Resources = cpu=4,mem=128G,node=1,billing=10
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+Loading /deac/csc/classes/csc373/software/modulefiles/csc373/python/3.11.8
+  Loading requirement: compilers/gcc/12.3.0 apps/python/3.11.8
+→ Epoch 1 done — Avg KL Loss: 4.5643
+→ Epoch 2 done — Avg KL Loss: 4.4006
+→ Epoch 3 done — Avg KL Loss: 4.3091
+→ Epoch 4 done — Avg KL Loss: 4.2594
+→ Epoch 5 done — Avg KL Loss: 4.2031
+→ Epoch 6 done — Avg KL Loss: 4.1314
+→ Epoch 7 done — Avg KL Loss: 4.0732
+→ Epoch 8 done — Avg KL Loss: 3.9957
+→ Epoch 9 done — Avg KL Loss: 3.9411
+→ Epoch 10 done — Avg KL Loss: 3.8460
+→ Epoch 11 done — Avg KL Loss: 3.7241
+→ Epoch 12 done — Avg KL Loss: 3.5830
+→ Epoch 13 done — Avg KL Loss: 3.4401
+→ Epoch 14 done — Avg KL Loss: 3.2575
+→ Epoch 15 done — Avg KL Loss: 3.0099
+→ Epoch 16 done — Avg KL Loss: 2.7243
+→ Epoch 17 done — Avg KL Loss: 2.4141
+→ Epoch 18 done — Avg KL Loss: 2.1019
+→ Epoch 19 done — Avg KL Loss: 1.8315
+→ Epoch 20 done — Avg KL Loss: 1.4904
+→ Epoch 21 done — Avg KL Loss: 1.1883
+→ Epoch 22 done — Avg KL Loss: 0.9516
+→ Epoch 23 done — Avg KL Loss: 0.7546
+→ Epoch 24 done — Avg KL Loss: 0.6208
+→ Epoch 25 done — Avg KL Loss: 0.5177
+✅ Distillation finished.
+Student model saved to distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0
+Distilled model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_3.0
+Accuracy: 79.20%
+Results saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distillation_results.csv

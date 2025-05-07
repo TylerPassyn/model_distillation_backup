@@ -1,0 +1,14 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM_e40
+Account   = csc373
+NodeList  = cpu-amd-08
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+→ Epoch 1 done — Avg KL Loss: 2.3081
+→ Epoch 2 done — Avg KL Loss: 2.2423
+✅ Distillation finished.
+Student model saved to distilled_student_Epochs_2_epochs_2_hidden_layers_8_temperature_4.0
+Distilled model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distilled_student_Epochs_2_epochs_2_hidden_layers_8_temperature_4.0
+Accuracy: 0.80%
+Results saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distillation_results.csv

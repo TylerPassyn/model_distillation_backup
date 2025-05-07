@@ -1,0 +1,37 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM_h2
+Account   = csc373
+NodeList  = cpu-amd-16
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+→ Epoch 1 done — Avg KL Loss: 2.3136
+→ Epoch 2 done — Avg KL Loss: 2.2256
+→ Epoch 3 done — Avg KL Loss: 2.2028
+→ Epoch 4 done — Avg KL Loss: 2.1827
+→ Epoch 5 done — Avg KL Loss: 2.1559
+→ Epoch 6 done — Avg KL Loss: 2.1250
+→ Epoch 7 done — Avg KL Loss: 2.1025
+→ Epoch 8 done — Avg KL Loss: 2.0476
+→ Epoch 9 done — Avg KL Loss: 1.9869
+→ Epoch 10 done — Avg KL Loss: 1.9180
+→ Epoch 11 done — Avg KL Loss: 1.8089
+→ Epoch 12 done — Avg KL Loss: 1.6954
+→ Epoch 13 done — Avg KL Loss: 1.5722
+→ Epoch 14 done — Avg KL Loss: 1.4358
+→ Epoch 15 done — Avg KL Loss: 1.3002
+→ Epoch 16 done — Avg KL Loss: 1.1602
+→ Epoch 17 done — Avg KL Loss: 1.0396
+→ Epoch 18 done — Avg KL Loss: 0.9164
+→ Epoch 19 done — Avg KL Loss: 0.8074
+→ Epoch 20 done — Avg KL Loss: 0.7147
+→ Epoch 21 done — Avg KL Loss: 0.6271
+→ Epoch 22 done — Avg KL Loss: 0.5599
+→ Epoch 23 done — Avg KL Loss: 0.4948
+→ Epoch 24 done — Avg KL Loss: 0.4353
+→ Epoch 25 done — Avg KL Loss: 0.3893
+✅ Distillation finished.
+Student model saved to distilled_student_Hidden_Layers_1_epochs_25_hidden_layers_1_temperature_4.0
+Distilled model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distilled_student_Hidden_Layers_1_epochs_25_hidden_layers_1_temperature_4.0
+Accuracy: 79.40%
+Results saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/distillation_results.csv

@@ -95,6 +95,9 @@ def test_main_model(image_directory, labels_file, results_file_directory):
 
 def main():
      # image_directory, labels_file, results_file_directory
+     # COPY FOR DEMO
+     # python Main_Model_Accuracy_Testing.py /deac/csc/classes/csc373/passta23/model_distillation_backup/Data/imagenet-sample-images-master /deac/csc/classes/csc373/passta23/model_distillation_backup/Data/imagenet-sample-images-master/extracted_labels.csv /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Main_Model_Outputs 
+
       if len(sys.argv) != 4:
            print("Usage: python Main_Model_Accuracy_Testing.py <image_directory> <labels_file> <results_file_directory>")
            sys.exit(1)

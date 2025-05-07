@@ -1,0 +1,17 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM_t6
+Account   = csc373
+NodeList  = cpu-amd-08
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+→ Epoch 1 done — Avg KL Loss: 4.5399
+→ Epoch 2 done — Avg KL Loss: 4.3448
+→ Epoch 3 done — Avg KL Loss: 4.2858
+→ Epoch 4 done — Avg KL Loss: 4.2183
+→ Epoch 5 done — Avg KL Loss: 4.1762
+→ Epoch 6 done — Avg KL Loss: 4.1233
+→ Epoch 7 done — Avg KL Loss: 4.0337
+→ Epoch 8 done — Avg KL Loss: 3.9083
+→ Epoch 9 done — Avg KL Loss: 3.8289
+→ Epoch 10 done — Avg KL Loss: 3.7172

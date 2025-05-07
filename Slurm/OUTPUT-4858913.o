@@ -1,0 +1,17 @@
+#########################BEGIN-PROLOG#########################
+JobName   = DM
+Account   = csc373
+NodeList  = cpu-amd-10
+Resources = cpu=4,mem=248G,node=1,billing=20
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+Loading /deac/csc/classes/csc373/software/modulefiles/csc373/python/3.11.8
+  Loading requirement: compilers/gcc/12.3.0 apps/python/3.11.8
+→ Epoch 1 done — Avg KL Loss: 4.5376
+→ Epoch 2 done — Avg KL Loss: 4.3789
+→ Epoch 3 done — Avg KL Loss: 4.2901
+→ Epoch 4 done — Avg KL Loss: 4.2538
+→ Epoch 5 done — Avg KL Loss: 4.1822
+→ Epoch 6 done — Avg KL Loss: 4.1282
+→ Epoch 7 done — Avg KL Loss: 4.0410
+→ Epoch 8 done — Avg KL Loss: 3.9522

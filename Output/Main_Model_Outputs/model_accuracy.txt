@@ -3,8 +3,8 @@ Model size (in MB): 290.2284927368164
 Number of attention heads: 16
 Number of hidden layers: 24
 Hidden size: 1024
-Total inference time for all images: 258.14755415916443 seconds
-Average inference time per image: 1.290737770795822 seconds
+Total inference time for all images: 251.5961697101593 seconds
+Average inference time per image: 1.2579808485507966 seconds
 Accuracy: 88.00%
 Results were tested on 200 images
 The files traversed were the last 200 files in the directory
