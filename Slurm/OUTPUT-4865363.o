@@ -1,0 +1,73 @@
+#########################BEGIN-PROLOG#########################
+JobName   = csc373-DM
+Account   = csc373
+NodeList  = cpu-intel-63
+Resources = cpu=4,mem=16G,node=1,billing=4
+WorkDir   = /deac/csc/classes/csc373/passta23/model_distillation_backup/Slurm
+###########################END-PROLOG#########################
+Loading /deac/csc/classes/csc373/software/modulefiles/csc373/python/3.11.8
+  Loading requirement: compilers/gcc/12.3.0 apps/python/3.11.8
+Collecting datasets
+  Downloading datasets-3.6.0-py3-none-any.whl.metadata (19 kB)
+Requirement already satisfied: filelock in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (3.16.1)
+Requirement already satisfied: numpy>=1.17 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (1.26.4)
+Requirement already satisfied: pyarrow>=15.0.0 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (18.1.0)
+Collecting dill<0.3.9,>=0.3.0 (from datasets)
+  Downloading dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: pandas in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (2.2.3)
+Requirement already satisfied: requests>=2.32.2 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (2.32.3)
+Requirement already satisfied: tqdm>=4.66.3 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (4.67.1)
+Collecting xxhash (from datasets)
+  Downloading xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multiprocess<0.70.17 (from datasets)
+  Downloading multiprocess-0.70.16-py311-none-any.whl.metadata (7.2 kB)
+Requirement already satisfied: fsspec<=2025.3.0,>=2023.1.0 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets) (2024.12.0)
+Requirement already satisfied: huggingface-hub>=0.24.0 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (0.28.1)
+Requirement already satisfied: packaging in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (24.2)
+Requirement already satisfied: pyyaml>=5.1 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from datasets) (6.0.2)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading aiohttp-3.11.18-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from huggingface-hub>=0.24.0->datasets) (4.12.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (3.4.1)
+Requirement already satisfied: idna<4,>=2.5 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (2.3.0)
+Requirement already satisfied: certifi>=2017.4.17 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from requests>=2.32.2->datasets) (2025.1.31)
+Requirement already satisfied: python-dateutil>=2.8.2 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from pandas->datasets) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from pandas->datasets) (2024.2)
+Requirement already satisfied: tzdata>=2022.7 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from pandas->datasets) (2024.2)
+Collecting aiohappyeyeballs>=2.3.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.1.2 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading aiosignal-1.3.2-py2.py3-none-any.whl.metadata (3.8 kB)
+Requirement already satisfied: attrs>=17.3.0 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets) (24.3.0)
+Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading frozenlist-1.6.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (16 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading multidict-6.4.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading propcache-0.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (10 kB)
+Collecting yarl<2.0,>=1.17.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets)
+  Downloading yarl-1.20.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (72 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.4/72.4 kB 2.2 MB/s eta 0:00:00
+Requirement already satisfied: six>=1.5 in /deac/csc/classes/csc373/software/csc373/lib/python3.11/site-packages (from python-dateutil>=2.8.2->pandas->datasets) (1.17.0)
+Downloading datasets-3.6.0-py3-none-any.whl (491 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 491.5/491.5 kB 9.8 MB/s eta 0:00:00
+Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.3/116.3 kB 8.5 MB/s eta 0:00:00
+Downloading multiprocess-0.70.16-py311-none-any.whl (143 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.5/143.5 kB 9.5 MB/s eta 0:00:00
+Downloading xxhash-3.5.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 194.8/194.8 kB 13.7 MB/s eta 0:00:00
+Downloading aiohttp-3.11.18-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 36.8 MB/s eta 0:00:00
+Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Downloading aiosignal-1.3.2-py2.py3-none-any.whl (7.6 kB)
+Downloading frozenlist-1.6.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (313 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.6/313.6 kB 19.8 MB/s eta 0:00:00
+Downloading multidict-6.4.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (223 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 223.5/223.5 kB 13.9 MB/s eta 0:00:00
+Downloading propcache-0.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (232 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 232.5/232.5 kB 14.2 MB/s eta 0:00:00
+Downloading yarl-1.20.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (358 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 358.1/358.1 kB 20.6 MB/s eta 0:00:00
+Installing collected packages: xxhash, propcache, multidict, frozenlist, dill, aiohappyeyeballs, yarl, multiprocess, aiosignal, aiohttp, datasets

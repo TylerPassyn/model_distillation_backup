@@ -11,3 +11,34 @@ num_hidden_layers: 8
 temperature: 2.0
 num_epochs: 25
 num_classes: 1000
+→ Epoch 1 done — Avg KL Loss: 12.0131
+→ Epoch 2 done — Avg KL Loss: 11.4980
+→ Epoch 3 done — Avg KL Loss: 11.2213
+→ Epoch 4 done — Avg KL Loss: 10.9143
+→ Epoch 5 done — Avg KL Loss: 10.6493
+→ Epoch 6 done — Avg KL Loss: 10.4017
+→ Epoch 7 done — Avg KL Loss: 10.1877
+→ Epoch 8 done — Avg KL Loss: 9.8262
+→ Epoch 9 done — Avg KL Loss: 9.4738
+→ Epoch 10 done — Avg KL Loss: 9.1199
+→ Epoch 11 done — Avg KL Loss: 8.6801
+→ Epoch 12 done — Avg KL Loss: 8.1266
+→ Epoch 13 done — Avg KL Loss: 7.5488
+→ Epoch 14 done — Avg KL Loss: 6.8747
+→ Epoch 15 done — Avg KL Loss: 6.0928
+→ Epoch 16 done — Avg KL Loss: 5.2316
+→ Epoch 17 done — Avg KL Loss: 4.3071
+→ Epoch 18 done — Avg KL Loss: 3.4418
+→ Epoch 19 done — Avg KL Loss: 2.6622
+→ Epoch 20 done — Avg KL Loss: 1.9903
+→ Epoch 21 done — Avg KL Loss: 1.4492
+→ Epoch 22 done — Avg KL Loss: 1.1268
+→ Epoch 23 done — Avg KL Loss: 0.9085
+→ Epoch 24 done — Avg KL Loss: 0.7555
+→ Epoch 25 done — Avg KL Loss: 0.6597
+✅ Distillation finished.
+Student model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Distilled_Models/Systematic_Testing/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_2.0
+Distilled model saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Distilled_Models/Systematic_Testing/distilled_student_Temperature_3_epochs_25_hidden_layers_8_temperature_2.0
+Accuracy: 79.20%
+Average inference time: 0.2329 seconds
+Results saved to /deac/csc/classes/csc373/passta23/model_distillation_backup/Output/Testing_Results/inference_distillation_results.csv
