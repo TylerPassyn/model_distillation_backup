@@ -92,10 +92,48 @@ plt.tight_layout()
 plt.savefig("representation_plot.png")
 plt.show()
 
+#now repeat the above but with the distilled model
 
-plt.plot([0,1,2,3], [10,20,10,5])
-plt.title("Test Plot")
-plt.xlabel("X")
-plt.ylabel("Y")
-plt.savefig("test_plot.png")
+# Load model and feature extractor
+feature_extractor = ViTFeatureExtractor.from_pretrained(MODEL_NAME)
+model = ViTModel.from_pretrained(REAL_MODEL_PATH).to(DEVICE)
+model.eval()
+
+# Load images and extract representations
+embeddings = []
+labels = []
+for filename in paths:
+    if filename.lower().endswith((".png", ".jpg", ".jpeg")):
+        img = Image.open(filename).convert("RGB")
+        inputs = feature_extractor(images=img, return_tensors="pt").to(DEVICE)
+        with torch.no_grad():
+            outputs = model(**inputs)
+            # Use the [CLS] token representation
+            cls_embedding = outputs.pooler_output.squeeze().cpu().numpy()
+            embeddings.append(cls_embedding)  # Or derive a label/category from filename
+embeddings = np.vstack(embeddings)
+# Dimensionality reduction (choose one)
+# PCA to 2D
+pca = PCA(n_components=2)
+embeddings_2d = pca.fit_transform(embeddings)
+# Alternatively, use t-SNE
+# tsne = TSNE(n_components=2, perplexity=30, n_iter=1000)
+# embeddings_2d = tsne.fit_transform(embeddings)
+# Plot
+plt.figure(figsize=(10, 8))
+# Color by derived label/category; here we just use indices
+scatter = plt.scatter(embeddings_2d[:, 0], embeddings_2d[:, 1], cmap='tab10', s=100)
+for name in paths_dict.keys():
+    txt = name
+    #now plot the name of the image
+    plt.annotate(txt, (embeddings_2d[paths.index(paths_dict[name]), 0], embeddings_2d[paths.index(paths_dict[name]), 1]), fontsize=12, )
+plt.title("2D Visualization of Distilled ViT Representations")
+plt.xlabel("Component 1")
+plt.ylabel("Component 2")
+plt.tight_layout()
+plt.savefig("distilled_representation_plot.png")
 plt.show()
+
+
+#now repeat the above but with the distilled model
+
